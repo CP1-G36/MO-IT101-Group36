@@ -260,31 +260,47 @@ public class MotorPH {
 
                         // Loop through each payroll month
                         for (int i = 0; i < months.length; i++) {
-                            
+
+                            // Division and Month Header
                             System.out.println("\n--------------------------------------------------------");
                             System.out.println(months[i] + " Payroll");
                             System.out.println("--------------------------------------------------------\n");
                             
                             int monthNumber = i + 6;
 
+                            // ===================
                             // FIRST PAYOUT (1-15)
-                            double hoursFirstHalf = calculateHours(employeeNumber, monthNumber, 1, 15);
-                            double hourlyRate = getHourlyRate(employeeNumber);
+                            // ===================
 
-                            //Gross salary calculation
-                            double grossFirstHalf = hoursFirstHalf * hourlyRate;
+                            // 1st Cutoff Total Worked Hours calculation
+                            double hoursFirstHalf = calculateHours(employeeNumber, monthNumber, 1, 15);
                             
+                            // Gross salary calculation
+                            double hourlyRate = getHourlyRate(employeeNumber);
+                            double grossFirstHalf = hoursFirstHalf * hourlyRate;
+
+                            // Display Results
                             System.out.println("Cutoff Date: " + months[i] + " 1-15");
                             System.out.println("Total Hours Worked: " + hoursFirstHalf);
                             System.out.println("Gross Salary: " + grossFirstHalf);
 
                             // No deductions for first cutoff
                             System.out.println("Net Salary: " + grossFirstHalf);
-
+                     
+                            // ===================
                             // SECOND PAYOUT (16-End of month)
+                            // ===================
+
+                            // Second Cutoff Total Worked Hours calculation
                             double hoursSecondHalf = calculateHours(employeeNumber, monthNumber, 16, lastDays[i]);
+
+                            // Gross Salary calculation
                             double grossSecondHalf = hoursSecondHalf * hourlyRate;
+
+                            // Retrieve the employee's basic salary using their employee number
                             double basicSalary = getBasicSalary(employeeNumber);
+
+                            // Sum of 1st and 2nd Cutoff Gross Salary calculation
                             double monthlyGross = grossFirstHalf + grossSecondHalf;
                             
                             //Government Deductions
@@ -300,9 +316,10 @@ public class MotorPH {
                             // Total deductions including tax
                             double totalDeductions = governmentDeductions + tax;
 
-                            // Net salary
+                            // Net salary calculation
                             double netSalary = grossSecondHalf - totalDeductions;
-                            
+
+                            // Display Results
                             System.out.println("\nCutoff Date: " + months[i] + " 16-" + lastDays[i]);
                             System.out.println("Total Hours Worked: " + hoursSecondHalf);
                             System.out.println("Gross Salary: " + grossSecondHalf);

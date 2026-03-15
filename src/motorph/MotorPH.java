@@ -784,14 +784,12 @@ public class MotorPH {
                     System.out.println("Tax: " + tax);
                     System.out.println("Total Deductions: " + totalDeductions);
                     System.out.println("Net Salary: " + netSalary);
-
-               
                 }
-                System.out.println("\n========================================================\n");
+                    System.out.println("\n========================================================\n");
             }
 
-        } catch (IOException e) {
-            System.out.println("Error reading employees file: " + e.getMessage());
+                  } catch (IOException e) {
+                    System.out.println("Error reading employees file: " + e.getMessage());
         }
     }
 }

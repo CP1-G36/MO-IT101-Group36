@@ -287,9 +287,9 @@ public class MotorPH {
                             // No deductions for first cutoff
                             System.out.println("Net Salary: " + grossFirstHalf);
                      
-                            // ===================
+                            // ===============================
                             // SECOND PAYOUT (16-End of month)
-                            // ===================
+                            // ===============================
 
                             // Second Cutoff Total Worked Hours calculation
                             double hoursSecondHalf = calculateHours(employeeNumber, monthNumber, 16, lastDays[i]);

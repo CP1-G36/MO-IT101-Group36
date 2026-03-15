@@ -275,8 +275,10 @@ public class MotorPH {
                             // 1st Cutoff Total Worked Hours calculation
                             double hoursFirstHalf = calculateHours(employeeNumber, monthNumber, 1, 15);
                             
-                            // Gross salary calculation
+                            // Retrieve the employee's hourly rate using their employee number
                             double hourlyRate = getHourlyRate(employeeNumber);
+
+                            // Gross salary calculation
                             double grossFirstHalf = hoursFirstHalf * hourlyRate;
 
                             // Display Results

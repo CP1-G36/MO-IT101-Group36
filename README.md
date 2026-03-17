@@ -256,4 +256,4 @@ This process repeats for every month from **June to December** for each employee
 
 ## Project Plan Link
 
-https://github.com/CP1-G36/MO-IT101-Group36.git
+(https://docs.google.com/document/d/1P7kn9Eja1tQv4zw01GK-alKsWkU6lUq6Jv-jDrJ8ZTI/edit?tab=t.0)

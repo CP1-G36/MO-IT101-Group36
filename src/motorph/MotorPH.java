@@ -396,30 +396,34 @@ public class MotorPH {
                 int shiftEnd = convertToMinutes("17:00");
                 int lateThreshold = convertToMinutes("8:11"); // late if 8:11 or later
 
-                // Cap login and logout within shift
-                int startTime = Math.max(logInMin, shiftStart);
+                // Apply grace period for login
+                int startTime;
+                if (logInMin < lateThreshold) {
+                    
+                // 8:00–8:10 → treat as 8:00
+                    startTime = shiftStart;
+                } else {
+                    
+                // 8:11+ → actual login time
+                    startTime = logInMin;
+                }
+                // Cap logout to shift end (no overtime)
                 int endTime = Math.min(logOutMin, shiftEnd);
 
                 // Skip if no work done
-                if (endTime <= startTime) 
+                if (endTime <= startTime) {
                     continue;
-
-                // Worked minutes before break
+                }
+                // Compute worked minutes
                 int workedMinutes = endTime - startTime;
 
-                // Cap daily hours at 8 hours
-                workedMinutes = Math.min(workedMinutes, 480);
+                //Cap at 9 hours (so after break = 8 hours max)
+                workedMinutes = Math.min(workedMinutes, 540);
 
-                // Deduct late minutes if login ≥ 8:11
-                if (logInMin >= lateThreshold) {
-                    int lateMinutes = logInMin - shiftStart;
-                    workedMinutes = Math.max(workedMinutes - lateMinutes, 0);
-                }
-
-                // Deduct 1-hour break (60 minutes)
+                //Deduct 1-hour break
                 workedMinutes = Math.max(workedMinutes - 60, 0);
 
-                // Convert to hours and add to total
+                // Convert to hours
                 double hoursWorked = workedMinutes / 60.0;
                 totalHours += hoursWorked;
             }
